@@ -1,14 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 
 class WeatherList extends Component {
 
     //每一个call的变量都是一个single city
     renderWeather(cityData = []) {
         const name = cityData.city.name;
+        const temps = cityData.list.map(weather => weather.main.temp);
+        console.log(temps);
+
         return ( 
             <tr>
                 <td>{name}</td>
+                <td>
+                    <Sparklines height={120} width={180} data={temps}>
+                        <SparklinesLine color="blue" />
+                    </Sparklines>
+                </td>
             </tr>
         );
         
